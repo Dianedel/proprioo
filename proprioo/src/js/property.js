@@ -44,6 +44,14 @@ class Property extends React.Component {
         }));
     }
 
+    renderSearch() {
+        if (this.handleClick) {
+            return (
+                <Customers />
+            );
+        }
+    }
+
     render() {
         console.log(this.state.isToggleOn);
         return (
@@ -56,7 +64,7 @@ class Property extends React.Component {
                 <p>Cave : {(obj.cave)}</p>
                 <p>Jardin : {(obj.garden)} m2</p>
                 <button onClick={this.handleClick}>{this.state.isToggleOn ? 'Liste des acheteurs potentiels' : 'Afficher les acheteurs potentiels'}</button>
-                {/* <button onClick={() => { }}>Résultats</button> */}
+
             </div>
         );
         console.log(this.state.isToggleOn);
