@@ -13,6 +13,7 @@ class Home extends React.Component {
                 <img src={home} alt="home" />
             </div>
             <Property />
+            <Customers />
             </div>
                 );
             }
