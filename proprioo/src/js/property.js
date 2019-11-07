@@ -1,13 +1,40 @@
 import React from 'react';
 import '../index.css';
+import Customers from './customers';
 
 let obj = JSON.parse('{"id":"96890eb6-8689-5e05-9699-15cfc4c8896b","type":"house","rooms":2,"surface":44,"price":285645,"cave":false,"garden":627}')
 
+var Search = React.createElement({
+    getInitialState: function () {
+        return { showResults: false };
+    },
+    onClick: function () {
+        this.setState({ showResults: true });
+    },
+    render: function () {
+        return (
+            <div>
+                <input type="submit" value="Search" onClick={this.onClick} />
+                {this.state.showResults ? <Results /> : null}
+            </div>
+        );
+    }
+})
+
+var Results = React.createElement({
+    render: function() {
+        return (
+            <div id="results" className="search-results">
+                <Customers />
+            </div>
+        );
+    }
+});
 
 class Property extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isToggleOn : false };
+        this.state = { isToggleOn: false };
         this.handleClick = this.handleClick.bind(this)
     }
 
@@ -21,15 +48,15 @@ class Property extends React.Component {
         console.log(this.state.isToggleOn);
         return (
             <div className="property">
-            <h1>Caractéristique du bien : </h1>
-            <p>Type : {(obj.type)}</p>
-            <p>Nombre de pièces : {(obj.rooms)}</p>
-            <p>Surface en m2 : {(obj.surface)}</p>
-            <p>Prix : {(obj.price)}</p>
-            <p>Cave : {(obj.cave)}</p>
-            <p>Jardin en m2 : {(obj.garden)}</p>
-            <button onClick={this.handleClick}>{this.state.isToggleOn ? 'Liste des acheteurs potentiels' : 'Afficher les acheteurs potentiels'}</button>
-            {/* <button onClick={() => { }}>Résultats</button> */}
+                <h1>Caractéristique du bien : </h1>
+                <p>Type : {(obj.type)}</p>
+                <p>Nombre de pièces : {(obj.rooms)}</p>
+                <p>Surface: {(obj.surface)} m2</p>
+                <p>Prix : {(obj.price)} €</p>
+                <p>Cave : {(obj.cave)}</p>
+                <p>Jardin : {(obj.garden)} m2</p>
+                <button onClick={this.handleClick}>{this.state.isToggleOn ? 'Liste des acheteurs potentiels' : 'Afficher les acheteurs potentiels'}</button>
+                {/* <button onClick={() => { }}>Résultats</button> */}
             </div>
         );
         console.log(this.state.isToggleOn);
