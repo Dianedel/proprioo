@@ -4,33 +4,6 @@ import Customers from './customers';
 
 let obj = JSON.parse('{"id":"96890eb6-8689-5e05-9699-15cfc4c8896b","type":"house","rooms":2,"surface":44,"price":285645,"cave":false,"garden":627}')
 
-var Search = React.createElement({
-    getInitialState: function () {
-        return { showResults: false };
-    },
-    onClick: function () {
-        this.setState({ showResults: true });
-    },
-    render: function () {
-        return (
-            <div>
-                <input type="submit" value="Search" onClick={this.onClick} />
-                {this.state.showResults ? <Results /> : null}
-            </div>
-        );
-    }
-})
-
-var Results = React.createElement({
-    render: function() {
-        return (
-            <div id="results" className="search-results">
-                <Customers />
-            </div>
-        );
-    }
-});
-
 class Property extends React.Component {
     constructor(props) {
         super(props);
@@ -44,8 +17,8 @@ class Property extends React.Component {
         }));
     }
 
-    renderSearch() {
-        if (this.handleClick) {
+    renderSearch(handleClick) {
+        if (handleClick) {
             return (
                 <Customers />
             );
@@ -63,8 +36,7 @@ class Property extends React.Component {
                 <p>Prix : {(obj.price)} €</p>
                 <p>Cave : {(obj.cave)}</p>
                 <p>Jardin : {(obj.garden)} m2</p>
-                <button onClick={this.handleClick}>{this.state.isToggleOn ? 'Liste des acheteurs potentiels' : 'Afficher les acheteurs potentiels'}</button>
-
+                <button onClick={this.renderSearch}>Résultats</button>
             </div>
         );
         console.log(this.state.isToggleOn);
